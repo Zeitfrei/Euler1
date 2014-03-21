@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+
+int results[1000];
+int result, noone, notwo, upto;
+
+bool isInArray(int);
+void find_multiples(int,int,int);
+int sum(int[]);
+
+int main()
+{
+    noone = 3;
+	notwo = 5;
+	upto = 1000;
+    
+    find_multiples (noone,notwo,upto);
+	cout << "Result: " << sum(results);
+    
+    return 0;
+}
+
+
+void find_multiples(int x, int y, int z)
+{
+	int counter = 1;
+	int pos = 0;
+
+	while(x*counter<1000)
+	{
+		results[pos] = x*counter;
+		pos++;
+	    counter++;
+	}
+
+	counter = 1;
+
+	while(y*counter<1000)
+	{
+		if(!isInArray(y*counter)) {results[pos]=y*counter;}
+		pos++;
+		counter++;
+	}
+}
+
+bool isInArray(int x)
+{
+    int length = sizeof(results) / sizeof(results[0]);
+	for(int i = 0; i<length;i++)
+	{
+		if(results[i]==x) {return true;}
+	}
+	return false;
+}
+
+int sum(int array[])
+{
+	int result=0;
+    int length = sizeof(results) / sizeof(results[0]);
+	for(int i=0;i<length;i++)
+	{
+		result += array[i];
+	}
+	return result;
+}
