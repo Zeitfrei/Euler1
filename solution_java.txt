@@ -1,0 +1,61 @@
+/**
+ * Created by Zeitfrei on 21.03.2014.
+ */
+public class Problem1 {
+
+    static int[] results;
+    static int result, noone, notwo, upto;
+
+    public static void main(String[] args)
+    {
+        noone = 3;
+        notwo = 5;
+        upto = 1000;
+        results = new int[1000];
+
+        find_multiples(noone, notwo, upto);
+        System.out.println(sum(results));
+
+    }
+
+    private static void find_multiples(int x, int y, int z)
+    {
+        int counter = 1;
+        int pos = 0;
+
+        while (x*counter < upto)
+        {
+            results[pos] = x*counter;
+            pos++;
+            counter++;
+        }
+
+        counter = 1;
+
+        while (y*counter < upto)
+        {
+            if(!isInArray(y*counter)){results[pos]=y*counter;}
+            pos++;
+            counter++;
+        }
+    }
+
+    private static boolean isInArray(int x)
+    {
+        for(int i = 0; i< results.length;i++)
+        {
+            if(results[i]==x){return true;}
+        }
+        return false;
+    }
+
+    private static int sum(int[] array)
+    {
+        int result = 0;
+        for(int i = 0; i<array.length;i++)
+        {
+            result += array[i];
+        }
+        return result;
+    }
+}
